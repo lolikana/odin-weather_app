@@ -6,7 +6,15 @@
     "start": "expo start",
     "android": "expo start --android",
     "ios": "expo start --ios",
-    "web": "expo start --web"
+    "web": "expo start --web",
+    "lint": "eslint .",
+    "prettier-format": "prettier --config .prettierrc './**/*.{ts,css,scss,json}' --write"
+  },
+  "eslintConfig": {
+    "extends": [
+      "react-app",
+      "react-app/jest"
+    ]
   },
   "dependencies": {
     "expo": "~48.0.15",
@@ -17,6 +25,18 @@
   "devDependencies": {
     "@babel/core": "^7.20.0",
     "@types/react": "~18.0.14",
+    "@typescript-eslint/eslint-plugin": "^5.59.7",
+    "@typescript-eslint/parser": "^5.59.7",
+    "babel-plugin-module-resolver": "^5.0.0",
+    "eslint": "^8.41.0",
+    "eslint-config-prettier": "^8.8.0",
+    "eslint-formatter-table": "^7.32.1",
+    "eslint-plugin-import": "^2.27.5",
+    "eslint-plugin-prettier": "^4.2.1",
+    "eslint-plugin-react": "^7.32.2",
+    "eslint-plugin-react-hooks": "^4.6.0",
+    "eslint-plugin-simple-import-sort": "^10.0.0",
+    "prettier": "^2.8.8",
     "typescript": "^4.9.4"
   },
   "private": true

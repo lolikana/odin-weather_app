@@ -1,0 +1,61 @@
+{
+  "env": {
+    "browser": true,
+    "es2021": true,
+    "node": true
+  },
+  "extends": [
+    "eslint:recommended",
+    "plugin:react/recommended",
+    "plugin:react-hooks/recommended",
+    "plugin:@typescript-eslint/recommended",
+    "plugin:prettier/recommended",
+    "plugin:@typescript-eslint/recommended-requiring-type-checking"
+  ],
+  "overrides": [],
+  "parser": "@typescript-eslint/parser",
+  "parserOptions": {
+    "sourceType": "module",
+    "tsconfigRootDir": "./",
+    "project": "./tsconfig.json",
+    "ecmaVersion": "latest"
+  },
+  "root": true,
+  "plugins": [
+    "react",
+    "react-hooks",
+    "import",
+    "simple-import-sort",
+    "@typescript-eslint",
+    "prettier"
+  ],
+  "rules": {
+    "indent": [2, 2, { "SwitchCase": 1 }],
+    "linebreak-style": ["error", "unix"],
+    "quotes": ["error", "single", { "allowTemplateLiterals": true, "avoidEscape": true }],
+    "semi": ["error", "always"],
+    "prettier/prettier": "error",
+    "no-empty-function": "off",
+    "@typescript-eslint/no-empty-function": "off",
+    "react/display-name": "off",
+    "react/prop-types": "off",
+    "sort-imports": "off",
+    "import/order": "off",
+    "simple-import-sort/imports": "error",
+    "simple-import-sort/exports": "error",
+    "import/first": "error",
+    "import/newline-after-import": "error",
+    "import/no-duplicates": "error",
+    "react-hooks/rules-of-hooks": "error",
+    "react/react-in-jsx-scope": "off",
+    "require-await": "off",
+    "@typescript-eslint/require-await": "warn",
+    "react/jsx-uses-react": "off",
+    "react/jsx-filename-extension": [1, { "extensions": [".js", ".jsx", ".ts", ".tsx"] }]
+  },
+  "settings": {
+    "react": {
+      "version": "detect"
+    }
+  }
+}
