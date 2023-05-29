@@ -14,10 +14,9 @@
     "incremental": true,
     "baseUrl": ".",
     "paths": {
-      "*": ["src/*"],
+      "@src/*": ["src/*"],
       "@components/*": ["src/components/*"],
-      "@libs/*": ["src/libs/*"],
-      "@public/*": ["public/*"]
+      "@assets/*": ["assets/*"]
     }
   },
   "include": ["./src/**/*", "**/*.ts", "**/*.tsx", "eslintrc.json", "app.config.js"]
