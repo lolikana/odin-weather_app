@@ -1,4 +1,3 @@
-import { hourTo12 } from '@src/utils/helpers';
 import { useEffect, useState } from 'react';
 
 import GeneralText from './GeneralText';
@@ -17,7 +16,7 @@ const DigitalClock = () => {
     updateClock();
   }, []);
 
-  let hours = hourTo12(time.getHours());
+  let hours = time.getHours();
   const minutes = time.getMinutes().toString().padStart(2, '0'); // Convert to string and pad with leading zeros if necessary
   const amPm = hours >= 12 ? 'PM' : 'AM';
 
