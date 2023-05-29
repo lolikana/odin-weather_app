@@ -2,10 +2,10 @@ import { BASE_URL, WEATHER_KEY } from '@env';
 import { ICurrWeather } from '@src/utils/types';
 import axios from 'axios';
 
-export const fetchCurrWeather = async (): Promise<ICurrWeather> => {
+export const fetchCurrWeather = async (location: string): Promise<ICurrWeather> => {
   const url = `${BASE_URL as string}/current.json?key=${
     WEATHER_KEY as string
-  }&q=Iizuka&aqi=no`;
+  }&q=${location}&aqi=no`;
   try {
     const response = await axios.get(url);
     const { data }: { data: ICurrWeather } = response;

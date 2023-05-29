@@ -30,7 +30,7 @@ const Today: FC<Props> = props => {
     <View style={styles.container}>
       <View style={styles.topInfo}>
         <GeneralText style={styles.title}>{condition.text}</GeneralText>
-        <GeneralText> {`${name}${region ? ', ' + region : ''}`}</GeneralText>
+        <GeneralText>{`${name}${region ? ', ' + region : ''}`}</GeneralText>
         <View style={styles.clock}>
           <DigitalClock />
         </View>
