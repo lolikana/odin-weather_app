@@ -2,35 +2,33 @@ import { useEffect, useState } from 'react';
 
 import GeneralText from './GeneralText';
 
-const DigitalClock = () => {
+const DigitalClock = (props: { timezone: string }) => {
+  const { timezone } = props;
   const [time, setTime] = useState(new Date());
 
   useEffect(() => {
     const updateClock = () => {
-      setTime(new Date());
+      const currentTime = new Date();
+      const nextMinute = new Date(currentTime);
+      nextMinute.setSeconds(0, 0);
 
-      const delay = 60000 - time.getSeconds() * 1000 - time.getMilliseconds();
+      setTime(nextMinute);
+
+      const delay =
+        60000 - currentTime.getSeconds() * 1000 - currentTime.getMilliseconds();
       setTimeout(updateClock, delay);
     };
 
     updateClock();
   }, []);
 
-  let hours = time.getHours();
-  const minutes = time.getMinutes().toString().padStart(2, '0'); // Convert to string and pad with leading zeros if necessary
-  const amPm = hours >= 12 ? 'PM' : 'AM';
+  const formattedTime = time.toLocaleTimeString('en-US', {
+    timeZone: timezone,
+    hour: 'numeric',
+    minute: 'numeric'
+  });
 
-  if (hours > 12) {
-    hours -= 12;
-  } else if (hours === 0) {
-    hours = 12;
-  }
-
-  return (
-    <GeneralText>
-      {hours}:{minutes} {amPm}
-    </GeneralText>
-  );
+  return <GeneralText>{formattedTime}</GeneralText>;
 };
 
 export default DigitalClock;
