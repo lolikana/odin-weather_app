@@ -27,7 +27,7 @@ const SearchForm = () => {
 const styles = StyleSheet.create({
   inputContainer: {
     position: 'relative',
-    width: '90%',
+    width: '100%',
     justifyContent: 'center'
   },
   input: {

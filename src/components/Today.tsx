@@ -5,6 +5,7 @@ import { Image, Pressable, StyleSheet, View } from 'react-native';
 import Colors from '../utils/colors';
 import { cToF } from '../utils/helpers';
 import SearchForm from './form/SearchForm';
+import DigitalClock from './ui/DigitalClock';
 import GeneralText from './ui/GeneralText';
 
 interface Props {
@@ -16,7 +17,6 @@ const Today: FC<Props> = props => {
 
   const [fTemp, setFTemp] = useState<number>(cToF(cTemp));
   const [isCelcius, setIsCelcius] = useState(true);
-  const currDate = new Date();
 
   const handleConvertTemp = () => {
     setIsCelcius(prev => (prev === true ? false : true));
@@ -31,10 +31,7 @@ const Today: FC<Props> = props => {
         <GeneralText style={styles.title}>Overcast Clouds</GeneralText>
         <GeneralText>Iizuka, Japan</GeneralText>
         <View>
-          <GeneralText>{currDate.toDateString()}</GeneralText>
-          <GeneralText>
-            {currDate.getHours()} : {currDate.getMinutes()}
-          </GeneralText>
+          <DigitalClock />
         </View>
       </View>
       <View>
