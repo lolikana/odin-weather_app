@@ -1,11 +1,11 @@
 import Today from '@components/Today';
-import { IDummyData } from '@src/utils/types';
+import { ICurrWeather } from '@src/utils/types';
 import { FC } from 'react';
 import { StyleSheet, View } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
 interface Props {
-  data: IDummyData;
+  currWeather: ICurrWeather;
 }
 
 const Main: FC<Props> = props => {
@@ -28,7 +28,7 @@ const Main: FC<Props> = props => {
       ]}
     >
       <View>
-        <Today data={props.data} />
+        <Today currWeather={props.currWeather} />
       </View>
     </View>
   );

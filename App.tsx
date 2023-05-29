@@ -1,14 +1,19 @@
+import { fetchCurrWeather } from '@src/api/weather';
 import Main from '@src/screens/Main';
-import { IDummyData } from '@src/utils/types';
+import { ICurrWeather } from '@src/utils/types';
 import { StatusBar } from 'expo-status-bar';
+import { useEffect, useState } from 'react';
 import { ImageBackground, StyleSheet } from 'react-native';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
 
-export const DUMMY_DATA: IDummyData = {
-  cTemp: 28
-};
-
 export default function App() {
+  const [currWeatherData, setCurrWeatherData] = useState<ICurrWeather>();
+  useEffect(() => {
+    fetchCurrWeather()
+      .then(data => setCurrWeatherData(data))
+      .catch(err => console.log('err: ', err));
+  }, []);
+
   return (
     <SafeAreaProvider style={styles.container}>
       <StatusBar style="light" />
@@ -17,7 +22,7 @@ export default function App() {
         resizeMode="cover"
         style={styles.bgImage}
       >
-        <Main data={DUMMY_DATA} />
+        <Main currWeather={currWeatherData as ICurrWeather} />
       </ImageBackground>
     </SafeAreaProvider>
   );
