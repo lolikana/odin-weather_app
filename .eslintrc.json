@@ -51,7 +51,8 @@
     "require-await": "off",
     "@typescript-eslint/require-await": "warn",
     "react/jsx-uses-react": "off",
-    "react/jsx-filename-extension": [1, { "extensions": [".js", ".jsx", ".ts", ".tsx"] }]
+    "react/jsx-filename-extension": [1, { "extensions": [".js", ".jsx", ".ts", ".tsx"] }],
+    "@typescript-eslint/no-unsafe-assignment": "off"
   },
   "settings": {
     "react": {
