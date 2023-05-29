@@ -6,11 +6,16 @@ import Colors from '../../utils/colors';
 const SearchForm = () => {
   const [location, setLocation] = useState<string>();
 
+  const locationInputHandler = (location: string) => {
+    setLocation(location);
+  };
+
   return (
     <View style={styles.inputContainer}>
       <TextInput
         placeholder="search location..."
         placeholderTextColor={Colors.primary}
+        onChangeText={locationInputHandler}
         value={location}
         style={styles.input}
       />
