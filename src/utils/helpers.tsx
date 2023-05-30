@@ -5,3 +5,7 @@ export function cToF(celsius: number) {
 export function fToC(fahrenheit: number) {
   return ((fahrenheit - 32) * 5) / 9;
 }
+
+export function kmhToMph(kmh: number) {
+  return +(kmh / 1.609).toFixed(1);
+}

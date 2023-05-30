@@ -1,4 +1,4 @@
-export interface ILocation {
+export type TLocation = {
   location: {
     name: string;
     region: string;
@@ -9,9 +9,9 @@ export interface ILocation {
     localtime_epoch: number;
     localtime: string;
   };
-}
+};
 
-export interface ICurrWeather extends ILocation {
+export type TCurrWeather = TLocation & {
   current: {
     last_updated_epoch: number;
     last_updated: string;
@@ -41,4 +41,11 @@ export interface ICurrWeather extends ILocation {
     gust_mph: number;
     gust_kph: number;
   };
-}
+};
+
+export type TInfoSup = {
+  id: number;
+  title: string;
+  icon: any;
+  data: number;
+};

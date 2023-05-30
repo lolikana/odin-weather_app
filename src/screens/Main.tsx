@@ -1,11 +1,12 @@
 import Today from '@components/Today';
-import { ICurrWeather } from '@src/utils/types';
+import TodaySupp from '@src/components/InfoSup';
+import { TCurrWeather } from '@src/utils/types';
 import { FC } from 'react';
 import { StyleSheet, View } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
 interface Props {
-  currWeather: ICurrWeather;
+  currWeather: TCurrWeather;
 }
 
 const Main: FC<Props> = props => {
@@ -27,8 +28,9 @@ const Main: FC<Props> = props => {
         styles.main
       ]}
     >
-      <View>
+      <View style={styles.top}>
         <Today currWeather={props.currWeather} />
+        <TodaySupp />
       </View>
     </View>
   );
@@ -36,7 +38,14 @@ const Main: FC<Props> = props => {
 
 const styles = StyleSheet.create({
   main: {
-    paddingHorizontal: 20
+    paddingHorizontal: 10
+  },
+  top: {
+    width: '100%',
+    maxHeight: '60%',
+    flexDirection: 'row',
+    justifyContent: 'space-around',
+    gap: 10
   }
 });
 

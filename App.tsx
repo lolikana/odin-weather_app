@@ -1,7 +1,7 @@
 import { fetchCurrWeather } from '@src/api/weather';
 import { searchedLocation } from '@src/context/searchLocation';
 import Main from '@src/screens/Main';
-import { ICurrWeather } from '@src/utils/types';
+import { TCurrWeather } from '@src/utils/types';
 import { StatusBar } from 'expo-status-bar';
 import { useAtomValue } from 'jotai';
 import { useEffect, useState } from 'react';
@@ -9,7 +9,7 @@ import { ImageBackground, StyleSheet } from 'react-native';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
 
 export default function App() {
-  const [currWeatherData, setCurrWeatherData] = useState<ICurrWeather>();
+  const [currWeatherData, setCurrWeatherData] = useState<TCurrWeather>();
   const location = useAtomValue(searchedLocation);
 
   useEffect(() => {
@@ -26,7 +26,7 @@ export default function App() {
         resizeMode="cover"
         style={styles.bgImage}
       >
-        <Main currWeather={currWeatherData as ICurrWeather} />
+        <Main currWeather={currWeatherData as TCurrWeather} />
       </ImageBackground>
     </SafeAreaProvider>
   );

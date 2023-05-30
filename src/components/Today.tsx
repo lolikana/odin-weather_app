@@ -1,23 +1,25 @@
-import { ICurrWeather } from '@src/utils/types';
+import { isCelcisuMetric } from '@src/context/metricSystem';
+import { TCurrWeather } from '@src/utils/types';
+import { useAtom } from 'jotai';
 import { FC, useState } from 'react';
 import { Image, Pressable, StyleSheet, View } from 'react-native';
 
-import Colors from '../utils/colors';
 import { cToF } from '../utils/helpers';
 import SearchForm from './form/SearchForm';
+import Card from './ui/Card';
 import DigitalClock from './ui/DigitalClock';
 import GeneralText from './ui/GeneralText';
 
 interface Props {
-  currWeather: ICurrWeather;
+  currWeather: TCurrWeather;
 }
 
 const Today: FC<Props> = props => {
   const { temp_c, condition } = props.currWeather.current;
-  const { name, region } = props.currWeather.location;
+  const { name, region, tz_id } = props.currWeather.location;
 
   const [fTemp, setFTemp] = useState<number>(cToF(temp_c));
-  const [isCelcius, setIsCelcius] = useState(true);
+  const [isCelcius, setIsCelcius] = useAtom(isCelcisuMetric);
 
   const handleConvertTemp = () => {
     setIsCelcius(prev => (prev === true ? false : true));
@@ -27,12 +29,12 @@ const Today: FC<Props> = props => {
   };
 
   return (
-    <View style={styles.container}>
+    <Card style={styles.card}>
       <View style={styles.topInfo}>
         <GeneralText style={styles.title}>{condition.text}</GeneralText>
         <GeneralText>{`${name}${region ? ', ' + region : ''}`}</GeneralText>
         <View style={styles.clock}>
-          <DigitalClock />
+          <DigitalClock timezone={tz_id} />
         </View>
       </View>
       <View>
@@ -51,16 +53,14 @@ const Today: FC<Props> = props => {
         />
       </View>
       <SearchForm />
-    </View>
+    </Card>
   );
 };
 
 const styles = StyleSheet.create({
-  container: {
+  card: {
     width: '60%',
-    borderRadius: 20,
-    backgroundColor: Colors.backgroundCard,
-    padding: 15
+    height: '100%'
   },
   topInfo: {
     gap: 5
