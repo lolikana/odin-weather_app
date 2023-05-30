@@ -7,7 +7,7 @@ import { TCurrWeather, TForecast } from '@src/utils/types';
 import { StatusBar } from 'expo-status-bar';
 import { useAtomValue } from 'jotai';
 import { useEffect, useState } from 'react';
-import { ImageBackground, StyleSheet } from 'react-native';
+import { ActivityIndicator, ImageBackground, StyleSheet, View } from 'react-native';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
 
 export default function App() {
@@ -36,6 +36,17 @@ export default function App() {
     });
   }, [location]);
 
+  if (!currWeatherData || !forecastWeather) {
+    return (
+      <SafeAreaProvider style={styles.container}>
+        <StatusBar style="light" />
+        <View style={styles.loadingContainer}>
+          <ActivityIndicator size="large" color="gray" />
+        </View>
+      </SafeAreaProvider>
+    );
+  }
+
   return (
     <SafeAreaProvider style={styles.container}>
       <StatusBar style="light" />
@@ -44,16 +55,18 @@ export default function App() {
         resizeMode="cover"
         style={styles.bgImage}
       >
-        <Main
-          currWeather={currWeatherData as TCurrWeather}
-          forecast={forecastWeather as TForecast[]}
-        />
+        <Main currWeather={currWeatherData} forecast={forecastWeather} />
       </ImageBackground>
     </SafeAreaProvider>
   );
 }
 
 const styles = StyleSheet.create({
+  loadingContainer: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center'
+  },
   container: {
     flex: 1
   },
