@@ -16,8 +16,9 @@ export default function App() {
   const location = useAtomValue(searchedLocation);
 
   useEffect(() => {
-    fetchCurrWeather(location)
-      .then(data => {
+    const fetchData: () => Promise<void> = async () => {
+      try {
+        const data = await fetchCurrWeather(location);
         InfoSupData.length = 0;
         setCurrWeatherData(data);
         setForecastWeather(data.forecast.forecastday);
@@ -25,8 +26,14 @@ export default function App() {
         InfoSup.prototype.addInfo('humidity', data.current.humidity);
         InfoSup.prototype.addInfo('precip_mm', data.current.precip_mm);
         InfoSup.prototype.addInfo('wind_kph', data.current.wind_kph);
-      })
-      .catch(err => console.log('err: ', err));
+      } catch (err) {
+        console.log('Error fetching current weather:', err);
+      }
+    };
+
+    fetchData().catch(error => {
+      console.log('Error occurred during data fetching:', error);
+    });
   }, [location]);
 
   return (

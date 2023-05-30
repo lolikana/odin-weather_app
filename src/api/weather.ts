@@ -7,7 +7,6 @@ export const fetchCurrWeather = async (location: string): Promise<TWeather> => {
     WEATHER_KEY as string
   }&q=${location}&days=3&aqi=no&alerts=no`;
   try {
-    console.log('CALLED');
     const response = await axios.get(url);
     const { data }: { data: TWeather } = response;
     return data;
