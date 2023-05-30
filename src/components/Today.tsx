@@ -76,7 +76,7 @@ const styles = StyleSheet.create({
   },
   icon: {
     width: '50%',
-    height: 80,
+    height: 50,
     marginBottom: 20
   }
 });

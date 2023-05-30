@@ -3,7 +3,7 @@ import { searchedLocation } from '@src/context/searchLocation';
 import InfoSup from '@src/models/infoSup';
 import Main from '@src/screens/Main';
 import { InfoSupData } from '@src/utils/datas';
-import { TCurrWeather } from '@src/utils/types';
+import { TCurrWeather, TForecast } from '@src/utils/types';
 import { StatusBar } from 'expo-status-bar';
 import { useAtomValue } from 'jotai';
 import { useEffect, useState } from 'react';
@@ -12,6 +12,7 @@ import { SafeAreaProvider } from 'react-native-safe-area-context';
 
 export default function App() {
   const [currWeatherData, setCurrWeatherData] = useState<TCurrWeather>();
+  const [forecastWeather, setForecastWeather] = useState<TForecast[]>();
   const location = useAtomValue(searchedLocation);
 
   useEffect(() => {
@@ -19,6 +20,7 @@ export default function App() {
       .then(data => {
         InfoSupData.length = 0;
         setCurrWeatherData(data);
+        setForecastWeather(data.forecast.forecastday);
         InfoSup.prototype.addInfo('feelslike_c', data.current.feelslike_c);
         InfoSup.prototype.addInfo('humidity', data.current.humidity);
         InfoSup.prototype.addInfo('precip_mm', data.current.precip_mm);
@@ -35,7 +37,10 @@ export default function App() {
         resizeMode="cover"
         style={styles.bgImage}
       >
-        <Main currWeather={currWeatherData as TCurrWeather} />
+        <Main
+          currWeather={currWeatherData as TCurrWeather}
+          forecast={forecastWeather as TForecast[]}
+        />
       </ImageBackground>
     </SafeAreaProvider>
   );
