@@ -9,3 +9,7 @@ export function fToC(fahrenheit: number) {
 export function kmhToMph(kmh: number) {
   return +(kmh / 1.609).toFixed(1);
 }
+
+export function mmToIn(mm: number) {
+  return +(mm / 25.4).toFixed(2);
+}

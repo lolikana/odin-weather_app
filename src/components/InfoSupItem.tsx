@@ -1,5 +1,5 @@
 import { isCelcisuMetric } from '@src/context/metricSystem';
-import { cToF, kmhToMph } from '@src/utils/helpers';
+import { cToF, kmhToMph, mmToIn } from '@src/utils/helpers';
 import { TInfoSup } from '@src/utils/types';
 import { useAtomValue } from 'jotai';
 import { FC } from 'react';
@@ -10,7 +10,7 @@ import GeneralText from './ui/GeneralText';
 const InfoSupItem: FC<Omit<TInfoSup, 'id'>> = props => {
   const isCelcius = useAtomValue(isCelcisuMetric);
 
-  let unity: '°C' | '°F' | '%' | 'km/h' | 'mph' | '';
+  let unity: '°C' | '°F' | '%' | 'km/h' | 'mph' | 'mm' | 'in' | '';
   let data = props.data;
 
   switch (props.title) {
@@ -22,8 +22,9 @@ const InfoSupItem: FC<Omit<TInfoSup, 'id'>> = props => {
       unity = isCelcius ? '°C' : '°F';
       data = isCelcius ? props.data : cToF(props.data);
       break;
-    case 'Chance of Rain':
-      unity = '%';
+    case 'Precipitation':
+      unity = isCelcius ? 'mm' : 'in';
+      data = isCelcius ? props.data : mmToIn(props.data);
       break;
     case 'Wind Speed':
       unity = isCelcius ? 'km/h' : 'mph';

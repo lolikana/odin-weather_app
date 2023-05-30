@@ -44,7 +44,7 @@ export type TCurrWeather = TLocation & {
 };
 
 export type TInfoSup = {
-  id: number;
+  id: string;
   title: string;
   icon: any;
   data: number;
