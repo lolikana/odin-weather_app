@@ -1,14 +1,20 @@
 import { searchedLocation } from '@src/context/searchLocation';
 import { useSetAtom } from 'jotai';
+import { useState } from 'react';
 import { Image, Pressable, StyleSheet, TextInput, View } from 'react-native';
 
 import Colors from '../../utils/colors';
 
 const SearchForm = () => {
+  const [enteredLocation, setEnteredLocation] = useState<string>('');
   const setLocation = useSetAtom(searchedLocation);
 
   const onSubmitLocation = (location: string) => {
     setLocation(location);
+  };
+
+  const handleSearch = (text: string) => {
+    setEnteredLocation(text);
   };
 
   return (
@@ -16,10 +22,11 @@ const SearchForm = () => {
       <TextInput
         placeholder="search location..."
         placeholderTextColor={Colors.primary}
-        onSubmitEditing={value => onSubmitLocation(value.nativeEvent.text)}
+        onChangeText={handleSearch}
+        onSubmitEditing={() => onSubmitLocation(enteredLocation)}
         style={styles.input}
       />
-      <Pressable>
+      <Pressable onPress={() => onSubmitLocation(enteredLocation)}>
         <Image
           source={require('assets/icons/travel_explore_FILL0_wght400_GRAD0_opsz48.png')}
           style={styles.icon}
