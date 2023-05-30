@@ -1,6 +1,8 @@
 import Today from '@components/Today';
 import Forceast from '@src/components/Forccast';
 import TodaySupp from '@src/components/InfoSup';
+import Card from '@src/components/ui/Card';
+import GeneralText from '@src/components/ui/GeneralText';
 import { TCurrWeather, TForecast } from '@src/utils/types';
 import { FC } from 'react';
 import { StyleSheet, View } from 'react-native';
@@ -34,6 +36,11 @@ const Main: FC<Props> = props => {
         <Today currWeather={props.currWeather} />
         <TodaySupp />
       </View>
+      <View style={styles.titleContainer}>
+        <Card>
+          <GeneralText style={styles.title}>WEATHER APP</GeneralText>
+        </Card>
+      </View>
       <View style={styles.bottom}>
         <Forceast forecast={props.forecast} />
       </View>
@@ -53,8 +60,18 @@ const styles = StyleSheet.create({
     justifyContent: 'space-around',
     gap: 10
   },
-  bottom: {
+  titleContainer: {
     flex: 1,
+    height: '100%',
+    flexDirection: 'column',
+    justifyContent: 'center'
+  },
+  title: {
+    fontSize: 32,
+    textAlign: 'center'
+  },
+  bottom: {
+    flex: 2,
     justifyContent: 'center',
     marginBottom: 10
   }
