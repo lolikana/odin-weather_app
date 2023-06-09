@@ -1,4 +1,4 @@
-# The Odin Project - FullStack JS Path
+# <a href="https://www.theodinproject.com/">The Odin Project</a> : Full Stack JS - JAVASCRIPT Course
 
 ## Weather App
 
