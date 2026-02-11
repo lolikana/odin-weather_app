@@ -25,7 +25,7 @@
     "./**/*.{scss,css,json}": "prettier --write"
   },
   "dependencies": {
-    "axios": "^1.12.2",
+    "axios": "^1.13.5",
     "expo": "~49.0.16",
     "expo-status-bar": "~3.0.9",
     "jotai": "^2.1.0",
